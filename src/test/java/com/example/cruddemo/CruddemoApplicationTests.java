@@ -1,4 +1,4 @@
-package com.luv2code.springboot.cruddemo;
+package com.example.cruddemo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
