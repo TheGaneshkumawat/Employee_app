@@ -8,14 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.cruddemo.dao.EmployeeDAOHIb;
+import com.example.cruddemo.dao.EmployeeDAO;
 import com.example.cruddemo.entity.Employee;
 
 @Service
 public class EmployeeService {
 
 	@Autowired
-	private EmployeeDAOHIb employeeDAO;
+	private EmployeeDAO employeeDAO;
 	
 	public List<Employee> findAll() {		
 		 Iterable<Employee> findAll = employeeDAO.findAll();

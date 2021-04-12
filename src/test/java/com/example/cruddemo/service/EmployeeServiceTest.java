@@ -17,7 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.example.cruddemo.dao.EmployeeDAOHIb;
+import com.example.cruddemo.dao.EmployeeDAO;
 import com.example.cruddemo.entity.Employee;
 
 @ExtendWith(SpringExtension.class)
@@ -25,7 +25,7 @@ import com.example.cruddemo.entity.Employee;
 public class EmployeeServiceTest {
 
 	@MockBean
-	private EmployeeDAOHIb employeeDAO;
+	private EmployeeDAO employeeDAO;
 	
 	@Autowired
 	private EmployeeService service;
@@ -40,6 +40,7 @@ public class EmployeeServiceTest {
 		
 		Optional<Employee> optionalEmp = service.findById(1);
 		
+		System.out.println(optionalEmp.get().toString());
 		assertNotNull(optionalEmp.get(), "Employee not Found.");
 		assertTrue(optionalEmp.get().getId()== 1,"Expected employee not found");
 		
@@ -69,7 +70,7 @@ public class EmployeeServiceTest {
 	void testSave() {
 		Employee mockEmployee = new Employee("John", "wick", "test@gmail.com");
 		
-		doNothing().when(employeeDAO).save(mockEmployee);
+		doReturn(mockEmployee).when(employeeDAO).save(mockEmployee);
 		
 		Employee employee = service.save(mockEmployee);
 		

@@ -19,13 +19,15 @@ import com.example.cruddemo.utility.ErrorDetails;
 @RestController
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-  @ExceptionHandler(Exception.class)
-  @ResponseBody
-  public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
-	  ErrorDetails exceptionResponse = new ErrorDetails(new Date(), ex.getMessage(),
-        request.getDescription(false));
-    return new ResponseEntity(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-  }
+	/*
+	 * @ExceptionHandler(Exception.class)
+	 * 
+	 * @ResponseBody public final ResponseEntity<Object>
+	 * handleAllExceptions(Exception ex, WebRequest request) { ErrorDetails
+	 * exceptionResponse = new ErrorDetails(new Date(), ex.getMessage(),
+	 * request.getDescription(false)); return new ResponseEntity(exceptionResponse,
+	 * HttpStatus.INTERNAL_SERVER_ERROR); }
+	 */
 
   @ExceptionHandler(EmployeeNotFoundException.class)
   @ResponseBody
@@ -35,12 +37,14 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     return new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND);
   }
 	
-  @Override
-  @ResponseBody
-  protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-      HttpHeaders headers, HttpStatus status, WebRequest request) {
-    ErrorDetails errorDetails = new ErrorDetails(new Date(), "Validation Failed",
-        ex.getBindingResult().toString());
-    return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
-  }
+	/*
+	 * @Override
+	 * 
+	 * @ResponseBody protected ResponseEntity<Object>
+	 * handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders
+	 * headers, HttpStatus status, WebRequest request) { ErrorDetails errorDetails =
+	 * new ErrorDetails(new Date(), "Validation Failed",
+	 * ex.getBindingResult().toString()); return new ResponseEntity(errorDetails,
+	 * HttpStatus.BAD_REQUEST); }
+	 */
 }
